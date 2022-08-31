@@ -1,0 +1,259 @@
+---
+title: "Francisco Castellanos's CV"
+author: Francisco Castellanos
+date: "`r Sys.Date()`"
+params:
+  pdf_mode:
+    value: true
+  sheet_is_publicly_readable:
+    value: false
+  doctype: "HTML"
+output:
+  pagedown::html_resume:
+    css: ['dd_cv.css', 'resume']
+    self_contained: true
+    
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  results='asis', 
+  echo = FALSE
+)
+
+library(magrittr) # For the pipe
+library(glue)
+
+source("cv_printing_functions.r")
+source('helper_functions.R')
+
+skill_data <- read.csv('./data/skill_data.csv', stringsAsFactors = F)
+
+# Read in all data and initialize a CV printer object
+CV <- create_CV_object(
+  data_location = "https://docs.google.com/spreadsheets/d/1p4AWG57n0Wo8RXVZmCaaMkbcvM5AM_-3VnirM74LBds/edit?usp=drivesdk",  
+  pdf_mode = params$pdf_mode,
+  sheet_is_publicly_readable= params$sheet_is_publicly_readable
+)
+
+```
+
+
+```{r}
+# When in pdf export mode the little dots are unaligned, so fix that with some conditional CSS.
+if(params$pdf_mode) {
+    cat("
+<style>
+:root{
+  --decorator-outer-offset-left: -6.5px;
+}
+</style>")
+}
+```
+
+
+Aside
+================================================================================
+
+Contact {#contact}
+--------------------------------------------------------------------------------
+
+```{r contactinfo}
+# Adjust contact info based on document type - html has link while pdf does not
+if(params$doctype == "HTML") {
+  glue::glue('
+    - <i class="fa fa-map-marked-alt"></i> Lubbck, Texas
+    - <i class="fa fa-phone"></i> <a href="tel:+19047192072">(904) 719-2072</a>
+    - <i class="fa fa-envelope"></i> xacfran@gmail.com
+    - <i class="fa fa-globe"></i> [frcastel.com](https://xacfran.github.io/Francisco-X-Castellanos/)
+    - <i class="fa fa-github"></i> [github.com/mleary](https://github.com/Xacfran)
+    - <i class="fab fa-linkedin-in"></i> [linkedin.com/frcastel](https://www.linkedin.com/in/francisco-x-castellanos)
+  ')
+} 
+if(params$doctype == "PDF") {
+  glue::glue('
+    - <i class="fa fa-map-marked-alt"></i> Lubbock, Texas
+    - <i class="fa fa-phone"></i> 904.719.2072
+    - <i class="fa fa-envelope"></i> xacfran<!-- breaking hyplerlink -->@gmail.com
+    - <i class="fa fa-globe"></i> https://xacfran.github.io/Francisco-X-Castellanos/
+    - <i class="fa fa-github"></i> github.com/Xacfran
+    - <i class="fab fa-linkedin-in"></i> linkedin.com/francisco-x-castellanos
+  ')
+}
+```
+
+
+
+```{r download}
+# if doctype is html add link to download a pdf version
+if(params$doctype == "HTML"){
+  cat("[<i class='fas fa-download'></i> Download as a PDF](https://github.com/mleary/resume/raw/main/mleary_resume.pdf)")
+}
+```
+
+Tech skills {#skills}
+--------------------------------------------------------------------------------
+
+```{r codingskills, dev.args = list(bg = 'transparent')}
+# function from helper_functions.R
+build_skill_bars(skill_data, "Tech")
+```
+
+R skills {#rpackages}
+--------------------------------------------------------------------------------
+
+```{r rskills, dev.args = list(bg = 'transparent')}
+# function from helper_functions.R
+build_skill_bars(skill_data, "R Packages")
+```
+
+Languages {#languages}
+--------------------------------------------------------------------------------
+
+```{r learningfocus, dev.args = list(bg = 'transparent')}
+# function from helper_functions.R
+build_skill_bars(skill_data, "Languages")
+```
+
+<br>
+<br>
+
+Disclaimer {#disclaimer}
+--------------------------------------------------------------------------------
+
+
+```{r}
+# set disclaimer in bottom right corner based on doctype
+if(params$doctype == "HTML") {
+  glue::glue("
+    Made w/ [**pagedown**](https://github.com/rstudio/pagedown).   
+    Source code: [**Github repo**](https://github.com/Xacfran/resume).
+  ")
+} 
+if(params$doctype == "PDF") {
+  glue::glue("
+    Made w/ **pagedown::html_resume**
+    Code: **github.com/Xacfran/resume** 
+  ")
+}
+```
+
+
+Last updated on `r Sys.Date()`.
+<br>
+<br>
+
+
+Main
+================================================================================
+
+Francisco Xavier Castellanos Insuasti {#title}
+--------------------------------------------------------------------------------
+
+```{r}
+# Note the special double pipe so we modify the CV object in place
+CV %<>% print_text_block("intro") 
+```
+
+
+
+Education {data-icon=graduation-cap data-concise=true}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('education')
+```
+
+
+
+Research Experience {data-icon=laptop}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('research_positions')
+```
+
+
+
+Industry Experience {data-icon=suitcase}
+--------------------------------------------------------------------------------
+
+::: aside
+```{r}
+#CV %<>% print_text_block('industy_experience_aside')
+```
+:::
+
+```{r}
+CV %<>% print_section('industry_positions')
+```
+
+<!-- These breaks just force a new page so section doesnt get cut off -->
+<br>
+<br>
+<br>
+
+Teaching Experience {data-icon=chalkboard-teacher}
+--------------------------------------------------------------------------------
+
+::: aside
+```{r}
+#CV %<>% print_text_block('teaching_experience_aside')
+```
+:::
+
+```{r}
+CV %<>% print_section('teaching_positions')
+```
+
+
+
+Selected Data Science Writing {data-icon=chart-line}
+--------------------------------------------------------------------------------
+
+::: aside
+```{r}
+#CV %<>% print_text_block('data_science_writing_aside')
+```
+:::
+
+```{r}
+CV %<>% print_section('data_science_writings')
+```
+
+
+
+Selected Press (About)  {data-icon=newspaper}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('about_me_press')
+```
+
+
+<br>
+<br>
+
+
+Selected Press (By)  {data-icon=newspaper}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('by_me_press')
+```
+
+
+
+Selected Publications, Posters, and Talks {data-icon=book}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('academic_articles')
+```
+
+
+
+```{r eval=FALSE}
+CV %<>% print_links()
+```
+
