@@ -1,16 +1,13 @@
 section,skill,level
 Tech,R,4.5
 Tech,Python,2.5
-Tech,Git,2
+Tech,Git,2.5
 Tech,Bash,4
 Interests,Advanced Statistics,4.25
 Interests,Software Engineering,4
 Interests,Behavioral Economics,4
 Interests,ML Ops,5
 Interests,Python,4.5
-R Packages,tidyverse,4
-R Packages,rmarkdown,4
-R Packages,spatial tools,3
 Languages,Spanish,5
 Languages,English,5
 Languages,French,2

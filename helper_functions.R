@@ -13,7 +13,7 @@ build_skill_bars <- function(skill_data, section_title) {
     filter(section == section_title) %>% 
     ggplot(aes(x= reorder(skill, level), y = 5)) +
     geom_col(fill = "lightgrey") +
-    geom_col(aes(x= reorder(skill, level), y = level), fill = "darkgrey") +
+    geom_col(aes(x= reorder(skill, level), y = level), fill = "#98D4F0") +
     coord_flip() +
     geom_text(aes(label = skill,  y = 0.25), hjust = 0, size = 12, color = "white") +
     expand_limits(y = c(0,5)) +

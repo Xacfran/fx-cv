@@ -12,17 +12,17 @@ output:
   pagedown::html_resume:
     css: ['dd_cv.css', 'resume']
     self_contained: true
-    
+
 ---
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(
-  results='asis', 
+  results='asis',
   echo = FALSE
 )
 
 library(magrittr) # For the pipe
-library(glue)
+library(glue) # For barplots in sidebar
 
 source("cv_printing_functions.r")
 source('helper_functions.R')
@@ -31,7 +31,7 @@ skill_data <- read.csv('./data/skill_data.csv', stringsAsFactors = F)
 
 # Read in all data and initialize a CV printer object
 CV <- create_CV_object(
-  data_location = "https://docs.google.com/spreadsheets/d/1p4AWG57n0Wo8RXVZmCaaMkbcvM5AM_-3VnirM74LBds/edit?usp=drivesdk",  
+  data_location = "https://docs.google.com/spreadsheets/d/1p4AWG57n0Wo8RXVZmCaaMkbcvM5AM_-3VnirM74LBds/edit?usp=drivesdk",
   pdf_mode = params$pdf_mode,
   sheet_is_publicly_readable= params$sheet_is_publicly_readable
 )
@@ -51,6 +51,14 @@ if(params$pdf_mode) {
 }
 ```
 
+```{css, echo=FALSE}
+.pagedjs_page:not(:first-of-type) {
+  --sidebar-width: 0rem;
+  --sidebar-background-color: #ffffff;
+  --main-width: calc(var(--content-width) - var(--sidebar-width));
+  --decorator-horizontal-margin: 0.2in;
+}
+```
 
 Aside
 ================================================================================
@@ -62,32 +70,23 @@ Contact {#contact}
 # Adjust contact info based on document type - html has link while pdf does not
 if(params$doctype == "HTML") {
   glue::glue('
-    - <i class="fa fa-map-marked-alt"></i> Lubbck, Texas
+    - <i class="fa fa-map-marked-alt"></i> Lubbock, Texas
     - <i class="fa fa-phone"></i> <a href="tel:+19047192072">(904) 719-2072</a>
     - <i class="fa fa-envelope"></i> xacfran@gmail.com
-    - <i class="fa fa-globe"></i> [frcastel.com](https://xacfran.github.io/Francisco-X-Castellanos/)
-    - <i class="fa fa-github"></i> [github.com/mleary](https://github.com/Xacfran)
+    - <i class="fa fa-globe"></i> [frcastel.com](https://xacfran.github.io/digital-resume/)
+    - <i class="fa fa-github"></i> [github.com/Xacfran](https://github.com/Xacfran)
     - <i class="fab fa-linkedin-in"></i> [linkedin.com/frcastel](https://www.linkedin.com/in/francisco-x-castellanos)
   ')
-} 
+}
 if(params$doctype == "PDF") {
   glue::glue('
     - <i class="fa fa-map-marked-alt"></i> Lubbock, Texas
     - <i class="fa fa-phone"></i> 904.719.2072
     - <i class="fa fa-envelope"></i> xacfran<!-- breaking hyplerlink -->@gmail.com
-    - <i class="fa fa-globe"></i> https://xacfran.github.io/Francisco-X-Castellanos/
+    - <i class="fa fa-globe"></i> https://xacfran.github.io/digital-resume/
     - <i class="fa fa-github"></i> github.com/Xacfran
     - <i class="fab fa-linkedin-in"></i> linkedin.com/francisco-x-castellanos
   ')
-}
-```
-
-
-
-```{r download}
-# if doctype is html add link to download a pdf version
-if(params$doctype == "HTML"){
-  cat("[<i class='fas fa-download'></i> Download as a PDF](https://github.com/mleary/resume/raw/main/mleary_resume.pdf)")
 }
 ```
 
@@ -99,10 +98,11 @@ Tech skills {#skills}
 build_skill_bars(skill_data, "Tech")
 ```
 
+
+```{r rskills, dev.args = list(bg = 'transparent'), eval= FALSE}
+
 R skills {#rpackages}
 --------------------------------------------------------------------------------
-
-```{r rskills, dev.args = list(bg = 'transparent')}
 # function from helper_functions.R
 build_skill_bars(skill_data, "R Packages")
 ```
@@ -121,19 +121,19 @@ build_skill_bars(skill_data, "Languages")
 Disclaimer {#disclaimer}
 --------------------------------------------------------------------------------
 
-
 ```{r}
 # set disclaimer in bottom right corner based on doctype
 if(params$doctype == "HTML") {
   glue::glue("
-    Made w/ [**pagedown**](https://github.com/rstudio/pagedown).   
-    Source code: [**Github repo**](https://github.com/Xacfran/resume).
+  [*Download as a PDF*](https://github.com/Xacfran/frcastel.pdf) \n
+  Made w/ [**pagedown**](https://github.com/rstudio/pagedown). \n
+    Source code: [**Github repo**](https://github.com/Xacfran/fx-cv).
   ")
-} 
+}
 if(params$doctype == "PDF") {
   glue::glue("
-    Made w/ **pagedown::html_resume**
-    Code: **github.com/Xacfran/resume** 
+   Made w/ **pagedown::html_resume** \n
+    Code: **github.com/Xacfran/fx-cv**
   ")
 }
 ```
@@ -152,10 +152,8 @@ Francisco Xavier Castellanos Insuasti {#title}
 
 ```{r}
 # Note the special double pipe so we modify the CV object in place
-CV %<>% print_text_block("intro") 
+CV %<>% print_text_block("intro")
 ```
-
-
 
 Education {data-icon=graduation-cap data-concise=true}
 --------------------------------------------------------------------------------
@@ -164,8 +162,6 @@ Education {data-icon=graduation-cap data-concise=true}
 CV %<>% print_section('education')
 ```
 
-
-
 Research Experience {data-icon=laptop}
 --------------------------------------------------------------------------------
 
@@ -173,9 +169,9 @@ Research Experience {data-icon=laptop}
 CV %<>% print_section('research_positions')
 ```
 
+<br>
 
-
-Industry Experience {data-icon=suitcase}
+Professional Experience {data-icon=suitcase}
 --------------------------------------------------------------------------------
 
 ::: aside
@@ -197,7 +193,7 @@ Teaching Experience {data-icon=chalkboard-teacher}
 --------------------------------------------------------------------------------
 
 ::: aside
-```{r}
+```{r eval=FALSE}
 #CV %<>% print_text_block('teaching_experience_aside')
 ```
 :::
@@ -206,19 +202,16 @@ Teaching Experience {data-icon=chalkboard-teacher}
 CV %<>% print_section('teaching_positions')
 ```
 
-
-
-Selected Data Science Writing {data-icon=chart-line}
---------------------------------------------------------------------------------
-
 ::: aside
-```{r}
+```{r eval=FALSE}
+#Selected Data Science Writing {data-icon=chart-line}
+#--------------------------------------------------------------------------------
 #CV %<>% print_text_block('data_science_writing_aside')
 ```
 :::
 
-```{r}
-CV %<>% print_section('data_science_writings')
+```{r eval=FALSE}
+#CV %<>% print_section('data_science_writings')
 ```
 
 
@@ -235,23 +228,34 @@ CV %<>% print_section('about_me_press')
 <br>
 
 
-Selected Press (By)  {data-icon=newspaper}
---------------------------------------------------------------------------------
+```{r eval=FALSE}
+#Selected Press (By)  {data-icon=newspaper}
+#--------------------------------------------------------------------------------
 
-```{r}
-CV %<>% print_section('by_me_press')
+#CV %<>% print_section('by_me_press')
 ```
 
 
 
-Selected Publications, Posters, and Talks {data-icon=book}
+Publications {data-icon=book}
 --------------------------------------------------------------------------------
 
 ```{r}
 CV %<>% print_section('academic_articles')
 ```
 
+Conference Presentations {data-icon="users"}
+--------------------------------------------------------------------------------
 
+```{r}
+CV %<>% print_section('conference_presentations')
+```
+
+Awards {data-icon="award"}
+--------------------------------------------------------------------------------
+```{r}
+CV %<>% print_section('awards')
+```
 
 ```{r eval=FALSE}
 CV %<>% print_links()
