@@ -21,6 +21,18 @@ h2,
 h3 {
   font-family: "Playfair Display", serif;
   color: #000;
+  margin: 0;
+}
+
+strong {
+  font-weight: 700;
+}
+
+[data-id="title"] h1 {
+    font-weight: 280;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    text-transform: none;
 }
 
 /* When in PDF export mode make sure superscripts are nice and small and italic */

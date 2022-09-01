@@ -71,7 +71,7 @@ Contact {#contact}
 if(params$doctype == "HTML") {
   glue::glue('
     - <i class="fa fa-map-marked-alt"></i> Lubbock, Texas
-    - <i class="fa fa-phone"></i> <a href="tel:+19047192072">(904) 719-2072</a>
+    - <i class="fa fa-phone"></i> (904) 719-2072
     - <i class="fa fa-envelope"></i> xacfran@gmail.com
     - <i class="fa fa-globe"></i> [frcastel.com](https://xacfran.github.io/digital-resume/)
     - <i class="fa fa-github"></i> [github.com/Xacfran](https://github.com/Xacfran)
@@ -125,8 +125,7 @@ Disclaimer {#disclaimer}
 # set disclaimer in bottom right corner based on doctype
 if(params$doctype == "HTML") {
   glue::glue("
-  [*Download as a PDF*](https://github.com/Xacfran/frcastel.pdf) \n
-  Made w/ [**pagedown**](https://github.com/rstudio/pagedown). \n
+  Made in R w/ [**pagedown**](https://github.com/rstudio/pagedown). \n
     Source code: [**Github repo**](https://github.com/Xacfran/fx-cv).
   ")
 }
