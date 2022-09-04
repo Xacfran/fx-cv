@@ -70,18 +70,18 @@ Contact {#contact}
 # Adjust contact info based on document type - html has link while pdf does not
 if(params$doctype == "HTML") {
   glue::glue('
-    - <i class="fa fa-map-marked-alt"></i> Lubbock, Texas
-    - <i class="fa fa-phone"></i> <a href="tel:+19047192072">(904) 719-2072</a>
     - <i class="fa fa-envelope"></i> xacfran@gmail.com
+    - <i class="fa fa-phone"></i> +1 (904) 719-2072
     - <i class="fa fa-globe"></i> [frcastel.com](https://xacfran.github.io/digital-resume/)
     - <i class="fa fa-github"></i> [github.com/Xacfran](https://github.com/Xacfran)
     - <i class="fab fa-linkedin-in"></i> [linkedin.com/frcastel](https://www.linkedin.com/in/francisco-x-castellanos)
-  ')
+    - <i class="fa fa-map-marked-alt"></i> Lubbock, Texas
+    ')
 }
 if(params$doctype == "PDF") {
   glue::glue('
     - <i class="fa fa-map-marked-alt"></i> Lubbock, Texas
-    - <i class="fa fa-phone"></i> 904.719.2072
+    - <i class="fa fa-phone"></i> +1 904.719.2072
     - <i class="fa fa-envelope"></i> xacfran<!-- breaking hyplerlink -->@gmail.com
     - <i class="fa fa-globe"></i> https://xacfran.github.io/digital-resume/
     - <i class="fa fa-github"></i> github.com/Xacfran
@@ -90,7 +90,14 @@ if(params$doctype == "PDF") {
 }
 ```
 
-Tech skills {#skills}
+```{r languages, dev.args = list(bg = 'transparent'), eval=FALSE}
+#Languages {#languages}
+--------------------------------------------------------------------------------
+# function from helper_functions.R
+build_skill_bars(skill_data, "Languages")
+```
+
+Tech Skills {#tech_skills}
 --------------------------------------------------------------------------------
 
 ```{r codingskills, dev.args = list(bg = 'transparent')}
@@ -98,25 +105,29 @@ Tech skills {#skills}
 build_skill_bars(skill_data, "Tech")
 ```
 
+My experience includes but is not limited to: <br>
+  • Bioinformatics scripts development<br>
+  • Genome annotation<br>
+  • TE Characterization<br>
+  • Gene and protein structure prediction
 
 ```{r rskills, dev.args = list(bg = 'transparent'), eval= FALSE}
 
-R skills {#rpackages}
---------------------------------------------------------------------------------
+#R skills {#rpackages}
 # function from helper_functions.R
-build_skill_bars(skill_data, "R Packages")
+#build_skill_bars(skill_data, "R Packages")
 ```
 
-Languages {#languages}
+Lab Skills {#lab_skills}
 --------------------------------------------------------------------------------
 
-```{r learningfocus, dev.args = list(bg = 'transparent')}
-# function from helper_functions.R
-build_skill_bars(skill_data, "Languages")
-```
-
-<br>
-<br>
+Cytogenetics and cellular biology: <br>
+• C-banding<br>
+• NOR<br>
+• DAPI/CMA<sub>3</sub> <br>
+• FISH <br>
+• PCR <br>
+• Human cell cultures
 
 Disclaimer {#disclaimer}
 --------------------------------------------------------------------------------
@@ -125,8 +136,7 @@ Disclaimer {#disclaimer}
 # set disclaimer in bottom right corner based on doctype
 if(params$doctype == "HTML") {
   glue::glue("
-  [*Download as a PDF*](https://github.com/Xacfran/frcastel.pdf) \n
-  Made w/ [**pagedown**](https://github.com/rstudio/pagedown). \n
+  Made in R w/ [**pagedown**](https://github.com/rstudio/pagedown). \n
     Source code: [**Github repo**](https://github.com/Xacfran/fx-cv).
   ")
 }
@@ -169,7 +179,12 @@ Research Experience {data-icon=laptop}
 CV %<>% print_section('research_positions')
 ```
 
-<br>
+Internships {data-icon=university}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('internships')
+```
 
 Professional Experience {data-icon=suitcase}
 --------------------------------------------------------------------------------
@@ -181,13 +196,10 @@ Professional Experience {data-icon=suitcase}
 :::
 
 ```{r}
-CV %<>% print_section('industry_positions')
+CV %<>% print_section('professional_experience')
 ```
 
 <!-- These breaks just force a new page so section doesnt get cut off -->
-<br>
-<br>
-<br>
 
 Teaching Experience {data-icon=chalkboard-teacher}
 --------------------------------------------------------------------------------
@@ -216,17 +228,12 @@ CV %<>% print_section('teaching_positions')
 
 
 
+```{r eval=FALSE}
 Selected Press (About)  {data-icon=newspaper}
 --------------------------------------------------------------------------------
 
-```{r}
-CV %<>% print_section('about_me_press')
+#CV %<>% print_section('about_me_press')
 ```
-
-
-<br>
-<br>
-
 
 ```{r eval=FALSE}
 #Selected Press (By)  {data-icon=newspaper}
@@ -235,8 +242,6 @@ CV %<>% print_section('about_me_press')
 #CV %<>% print_section('by_me_press')
 ```
 
-
-
 Publications {data-icon=book}
 --------------------------------------------------------------------------------
 
@@ -244,7 +249,7 @@ Publications {data-icon=book}
 CV %<>% print_section('academic_articles')
 ```
 
-Conference Presentations {data-icon="users"}
+Conferences & Talks {data-icon="users"}
 --------------------------------------------------------------------------------
 
 ```{r}
