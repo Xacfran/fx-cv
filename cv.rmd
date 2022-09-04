@@ -111,13 +111,6 @@ My experience includes but is not limited to: <br>
   • TE Characterization<br>
   • Gene and protein structure prediction
 
-```{r rskills, dev.args = list(bg = 'transparent'), eval= FALSE}
-
-#R skills {#rpackages}
-# function from helper_functions.R
-#build_skill_bars(skill_data, "R Packages")
-```
-
 Lab Skills {#lab_skills}
 --------------------------------------------------------------------------------
 
@@ -204,44 +197,9 @@ CV %<>% print_section('professional_experience')
 Teaching Experience {data-icon=chalkboard-teacher}
 --------------------------------------------------------------------------------
 
-::: aside
-```{r eval=FALSE}
-#CV %<>% print_text_block('teaching_experience_aside')
-```
-:::
-
 ```{r}
 CV %<>% print_section('teaching_positions')
 ```
-
-::: aside
-```{r eval=FALSE}
-#Selected Data Science Writing {data-icon=chart-line}
-#--------------------------------------------------------------------------------
-#CV %<>% print_text_block('data_science_writing_aside')
-```
-:::
-
-```{r eval=FALSE}
-#CV %<>% print_section('data_science_writings')
-```
-
-
-
-```{r eval=FALSE}
-Selected Press (About)  {data-icon=newspaper}
---------------------------------------------------------------------------------
-
-#CV %<>% print_section('about_me_press')
-```
-
-```{r eval=FALSE}
-#Selected Press (By)  {data-icon=newspaper}
-#--------------------------------------------------------------------------------
-
-#CV %<>% print_section('by_me_press')
-```
-
 Publications {data-icon=book}
 --------------------------------------------------------------------------------
 
