@@ -23,4 +23,4 @@ If you find any errors, please let me know.
 
 ## Planning to use this template?
 
-If you are unsure on where or how to start, I'd suggest you have a look at the tutorials I mentioned above. I have also made available the file with which I started my CV, follow the steps on the installation of the packages as mentioned in the first lines of the file because there are some bugs in the datadrivencv package.
+If you are unsure on where or how to start, I'd suggest you have a look at the tutorials I mentioned above. I have also made available the file with which I started my CV `start_here.R`. Follow the steps on the installation of the packages as mentioned in the first lines of that file because there are some bugs in the datadrivencv package.
