@@ -1,4 +1,0 @@
-install.packages("devtools")
-devtools::install_github("nstrayer/datadrivencv")
-install.packages("devtools")
-devtools::install_github("nstrayer/datadrivencv")
