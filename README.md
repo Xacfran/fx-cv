@@ -23,4 +23,6 @@ If you find any errors, please let me know.
 
 ## Planning to use this template?
 
-If you are unsure on where or how to start, I'd suggest you have a look at the tutorials I mentioned above. I have also made available the file with which I started my CV `start_here.R`. Follow the steps on the installation of the packages as mentioned in the first lines of that file because there are some bugs in the datadrivencv package.
+If you are unsure about where or how to start, I'd suggest you have a look at the tutorials I mentioned above. I have made available the file you'll need to start it all: `start_here.R`. Follow the steps on the installation of the packages as mentioned in the first lines of that file because there are some bugs in the datadrivencv package you'll have to take care of before you can actually use the package.
+
+Bear in mind I have made the access to my googlesheet data private, thus, you will need to add the URL of your own googlesheet in `data_location = ""`.
