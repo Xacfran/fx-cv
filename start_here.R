@@ -11,7 +11,7 @@ library(datadrivencv)
 
 datadrivencv::use_datadriven_cv(
   full_name = "Francisco Castellanos",
-  data_location = "https://docs.google.com/spreadsheets/d/1p4AWG57n0Wo8RXVZmCaaMkbcvM5AM_-3VnirM74LBds/edit?usp=drivesdk",
+  data_location = "",
   pdf_location = here::here("files/fxcv.pdf"),
   html_location = here::here("files/"),
   source_location = here::here("files/"),
