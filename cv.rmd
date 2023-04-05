@@ -7,7 +7,7 @@ params:
     value: false
   sheet_is_publicly_readable:
     value: TRUE
-  doctype: "PDF"
+  doctype: "HTML"
 output:
   pagedown::html_resume:
     css: ['dd_cv.css', 'resume']
