@@ -1,5 +1,15 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat|Playfair+Display&display=swap");
-
+@import url("https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css");
+/*Add page number to the bottom left of the left and right pages */
+@page {
+  size: A4 portrait;
+  /* orig - margin: 1in 0.5in 1in 0.25in */
+  margin: 15mm 10.5mm 21mm 10.5mm;
+  @bottom-right {
+    content: counter(page);
+    font-size: 10px;
+}
+}
 .pagedjs_page:not(:first-of-type) {
   --sidebar-width: 3rem;
   --sidebar-background-color: #ffffff;
@@ -156,8 +166,8 @@ sup {
 
 /* Add styles for little cards  */
 .info-card{
-  width: 220px;    
-  float: left;    
+  width: 220px;
+  float: left;
   padding: 0.5rem;
   margin: 0.5rem;
   box-shadow: 1px 1px 4px black;

@@ -4,10 +4,10 @@ author: Francisco Castellanos
 date: "`r Sys.Date()`"
 params:
   pdf_mode:
-    value: true
-  sheet_is_publicly_readable:
     value: false
-  doctype: "HTML"
+  sheet_is_publicly_readable:
+    value: TRUE
+  doctype: "PDF"
 output:
   pagedown::html_resume:
     css: ['dd_cv.css', 'resume']
@@ -31,7 +31,7 @@ skill_data <- read.csv('./data/skill_data.csv', stringsAsFactors = F)
 
 # Read in all data and initialize a CV printer object
 CV <- create_CV_object(
-  data_location = "https://docs.google.com/spreadsheets/d/1p4AWG57n0Wo8RXVZmCaaMkbcvM5AM_-3VnirM74LBds/edit?usp=drivesdk",
+  data_location = "",
   pdf_mode = params$pdf_mode,
   sheet_is_publicly_readable= params$sheet_is_publicly_readable
 )
@@ -72,20 +72,22 @@ if(params$doctype == "HTML") {
   glue::glue('
     - <i class="fa fa-envelope"></i> xacfran@gmail.com
     - <i class="fa fa-phone"></i> +1 (904) 719-2072
-    - <i class="fa fa-globe"></i> [frcastel.com](https://xacfran.github.io/digital-resume/)
-    - <i class="fa fa-github"></i> [github.com/Xacfran](https://github.com/Xacfran)
-    - <i class="fab fa-linkedin-in"></i> [linkedin.com/frcastel](https://www.linkedin.com/in/francisco-x-castellanos)
+    - <i class="fa fa-github"></i> [Xacfran](https://github.com/Xacfran)
+    - <i class="ai ai-orcid"></i> [0000-0003-0955-8185](https://orcid.org/0000-0003-0955-8185)
+    - <i class="fab fa-linkedin-in"></i> [francisco-x-castellanos](https://www.linkedin.com/in/francisco-x-castellanos)
+    - <i class="fa fa-globe"></i> [Personal web page](https://xacfran.github.io/digital-resume/)
     - <i class="fa fa-map-marked-alt"></i> Lubbock, Texas
     ')
 }
 if(params$doctype == "PDF") {
   glue::glue('
     - <i class="fa fa-map-marked-alt"></i> Lubbock, Texas
-    - <i class="fa fa-phone"></i> +1 904.719.2072
-    - <i class="fa fa-envelope"></i> xacfran<!-- breaking hyplerlink -->@gmail.com
-    - <i class="fa fa-globe"></i> https://xacfran.github.io/digital-resume/
-    - <i class="fa fa-github"></i> github.com/Xacfran
-    - <i class="fab fa-linkedin-in"></i> linkedin.com/francisco-x-castellanos
+    - <i class="fa fa-phone"></i> +1 (904) 719-2072
+    - <i class="fa fa-envelope"></i> xacfran<!-- breaking hyperlink -->@gmail.com
+    - <i class="ai ai-orcid"></i> orcid.org/0000-0003-0955-8185
+    - <i class="fa fa-globe"></i> xacfran.github.io/digital-resume/
+    - <i class="fa fa-github"></i> @Xacfran
+    - <i class="fab fa-linkedin-in"></i> in/francisco-x-castellanos
   ')
 }
 ```
@@ -106,10 +108,13 @@ build_skill_bars(skill_data, "Tech")
 ```
 
 My experience includes but is not limited to: <br>
-  • Bioinformatics scripts development<br>
-  • Genome annotation<br>
-  • TE Characterization<br>
-  • Gene and protein structure prediction
+• Bioinformatics script   development<br>
+• Genome annotation<br>
+• Transposable elements<br>
+• Gene prediction<br>
+• Protein  <br>
+• Home range estimation
+
 
 Lab Skills {#lab_skills}
 --------------------------------------------------------------------------------
@@ -135,8 +140,8 @@ if(params$doctype == "HTML") {
 }
 if(params$doctype == "PDF") {
   glue::glue("
-   Made w/ **pagedown::html_resume** \n
-    Code: **github.com/Xacfran/fx-cv**
+   Made w/ **pagedown** \n
+    Code: **github.com/Xacfran**
   ")
 }
 ```
@@ -172,6 +177,12 @@ Research Experience {data-icon=laptop}
 CV %<>% print_section('research_positions')
 ```
 
+Professional Experience {data-icon=suitcase}
+--------------------------------------------------------------------------------
+```{r}
+CV %<>% print_section('professional_experience')
+```
+
 Internships {data-icon=university}
 --------------------------------------------------------------------------------
 
@@ -179,32 +190,27 @@ Internships {data-icon=university}
 CV %<>% print_section('internships')
 ```
 
-Professional Experience {data-icon=suitcase}
---------------------------------------------------------------------------------
-
-::: aside
-```{r}
-#CV %<>% print_text_block('industy_experience_aside')
-```
-:::
-
-```{r}
-CV %<>% print_section('professional_experience')
-```
-
-<!-- These breaks just force a new page so section doesnt get cut off -->
-
 Teaching Experience {data-icon=chalkboard-teacher}
 --------------------------------------------------------------------------------
 
 ```{r}
 CV %<>% print_section('teaching_positions')
 ```
+
+Pedagogical Training {data-icon=user-edit}
+--------------------------------------------------------------------------------
+
+```{r}
+CV %<>% print_section('teaching_professional_development')
+```
+
 Publications {data-icon=book}
 --------------------------------------------------------------------------------
 
 ```{r}
+
 CV %<>% print_section('academic_articles')
+
 ```
 
 Conferences & Talks {data-icon="users"}
